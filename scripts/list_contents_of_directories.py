@@ -17,10 +17,10 @@ print("\n")
 if len(sys.argv)>1:
     topdir += sys.argv[1]
 
-dire = ROOT.TSystemDirectory(topdir,topdir)
+dir = ROOT.TSystemDirectory(topdir,topdir)
 
 # TList object
-files = dire.GetListOfFiles()
+files = dir.GetListOfFiles()
 
 # For debugging
 #files.Print()
@@ -33,8 +33,15 @@ print("-------\n")
 # For debugging
 #print(len(files))
 
-for f in files:
-    print(f.GetName())
+if len(files)>0:
+    for f in files:
+        print(f.GetName())
+
+    print("\nThe above are the contents of the following directory: ")
+    print("\n{0}".format(topdir))
+else: 
+    print("\nThe contents of this directory are empty or it does not exist: ")
+    print("\n{0}".format(topdir))
 
 
 
