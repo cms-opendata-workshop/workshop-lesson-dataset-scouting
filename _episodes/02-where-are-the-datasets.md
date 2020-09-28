@@ -10,135 +10,41 @@ keypoints:
 - "The data and Monte Carlo are stored in directories with names that give you some insight as to what they contain"
 ---
 
-## Install a helper script
+# CERN Open Data Portal
 
-As we said in the previous section, accessing these files can be tricky. So we've written a very simple
-ROOT script in python that will help you list the contents of these directories. We've unimaginitively named it
-`list_contents_of_directories.py`. Let's install it first. 
+Our starting point is the landing page for [CERN Open Data Portal](http://opendata.cern.ch/).
+You should definitely take some time to explore it but for now, since we are primarily working
+with CMS data, you should find the CMS link under **Focus on** and click on it. 
 
-From within your `src` directory, you will pull down this command with `wget`. 
+> ## CERN Open Data Portal
+> The landing page for the open data portal.
+> ![](../assets/img/portal_screenshot_landing_page.png)
+{: .callout}
 
-~~~
-cd ~/CMSSW_5_3_32/src
-cmsenv
-wget https://raw.githubusercontent.com/cms-opendata-workshop/workshop-lesson-dataset-scouting/master/scripts/list_contents_of_directories.py
-~~~
-{: .language-bash}
+## CMS-specific datasets
 
-~~~
-Resolving raw.githubusercontent.com... 199.232.36.133
-Connecting to raw.githubusercontent.com|199.232.36.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 1033 (1.0K) [text/plain]
-Saving to: `list_contents_of_directories.py'
+The figure below shows the website after we have chosen the CMS data. Note the left-hand
+sidebar that allows us to filter our selections. Let's see what's there. 
+(*Note! I've collapsed some of the options so while the order is the same when you view it,
+ your webpage may look a little different at first glance.*)
 
-100%[====================================================================================================================================================================================================>] 1,033       --.-K/s   in 0s
+> ## CERN Open Data Portal - CMS data
+> The first pass to filter on CMS data
+> ![](../assets/img/portal_screenshot_search_bar_00.png)
+{: .callout}
 
-2020-09-27 07:04:57 (24.1 MB/s) - `list_contents_of_directories.py' saved [1033/1033]
-~~~
-{: .output}
+At first glance we can see a few things. First, there is an option to select only **Dataset** rather 
+than documentation or software or similar materials. Great! Going forward we'll select **Dataset**. 
 
-## Using the script
+Next we see that there are a lot of entries for data from **2010**, **2011**, and **2012**, the 7 TeV and 8 TeV running periods. 
+That's what we'll be working with for these exercises. 
 
-We can get the usage just by running it without any command-line options.
+> ## Coming soon!
+> For the keen of eye, you can see that there are some entries for 2016 and later data, the 13 TeV run periods! 
+> But that will be for a future workshop. :)
+{: .testimonial}
 
-~~~
-python list_contents_of_directories.py
-~~~
-{: .language-bash}
-~~~
-To list the contents of any subdirectories of
-
-root://eospublic.cern.ch//eos/opendata/cms/
-
-just add them to the commandline options.
-
-Example:
-python list_contents_of_directories.py
-python list_contents_of_directories.py Run2011A
-python list_contents_of_directories.py Run2011A/SingleMu
-
-
-200927 07:08:43 091 secgsi_InitProxy: cannot access private key file: /home/cmsusr/.globus/userkey.pem
---------------------------------
-Listing the contents of
-
-root://eospublic.cern.ch//eos/opendata/cms/
--------
-
-Commissioning10
-MonteCarlo2010
-MonteCarlo2011
-MonteCarlo2012
-MonteCarlo2016
-MonteCarlo2018
-MonteCarloCASTOR
-MonteCarloUpgrade
-Run2010A
-Run2010B
-Run2011A
-Run2011B
-Run2012B
-Run2012C
-configuration-files
-datascience
-derived-data
-documentation
-environment
-hep-tutorial-2012
-hidata
-luminosity
-masterclass-2014
-software
-trigger-information
-upload
-validated-runs
-
-The above are the contents of the following directory:
-
-root://eospublic.cern.ch//eos/opendata/cms/
-~~~
-{: .output}
-
-Let's examine what this is telling us.
-
-### Top storage location
-
-By default, the script lists the contents of 
-
-~~~
-root://eospublic.cern.ch//eos/opendata/cms/
-~~~
-{: .code}
-
-This is where the CMS open data is stored. Note that the `root:` that prepends the directory/location tells our script to 
-go out to find these ROOT files at `eospublic.cern.ch`. However, you won't be able to just direct your web browser to this location. 
-
-### Listings
-
-The next thing that is printed out is a list of directories. Some of them (e.g. `luminosity`) won't directly contain
-datasets of interest, but you should see directories like
-
-~~~
-...
-MonteCarlo2010
-MonteCarlo2011
-MonteCarlo2012
-...
-Run2010A
-Run2010B
-Run2011A
-Run2011B
-Run2012B
-Run2012C
-...
-~~~
-{: .code}
-
-And these will be the directories where we will start to look for our data.
-
-
-
+For the next module, let's select **Dataset** and **2012**. 
 
 
 

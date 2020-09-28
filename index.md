@@ -17,9 +17,4 @@ what is stored in them.
 
 {% comment %} This is a comment in Liquid {% endcomment %}
 
-> ## Prerequisites
->
-> FIXME
-{: .prereq}
-
 {% include links.md %}

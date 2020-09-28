@@ -12,6 +12,10 @@ keypoints:
 - "Some files may not have the information you're looking for"
 ---
 
+This part of the lesson will be done from within either a Docker container or VM. 
+All commands will be typed inside that environment. 
+
+
 ## edmXXX tools 
 
 CMS uses a set of homegrown tools to interact with the **AOD** format, all of which are prefixed by **edm**, which
@@ -20,8 +24,8 @@ can be done.
 
 ### edmDumpEventContent
 
-The **edmXXX** tools take as an argument the full path to a file. Using the information in the 
-previous module, we identify one of the Monte Carlo files to test, but these would equally well with
+The **edmXXX** tools take as an argument the full path to a file. Following a similar approach
+to the previous module, we've chosen one of the Monte Carlo files to test, but these commands would equally well with
 a data file. 
 
 Let's start by using `edmDumpEventContent` and looking at the options
@@ -48,10 +52,9 @@ Options:
 ~~~
 {: .output}
 
-
 We will first use `edmDumpEventContent` to see what is in one of these files with no other options. It may take 15-60 seconds to run and
 there will be *a lot* of output. You may find it useful to redirect the output to a file and then look at it there
-using `less` or a similar command (you exit `less` by typing `q`. 
+using `less` or a similar command (you can exit `less` by typing `q`). 
 
 ~~~
 edmDumpEventContent root://eospublic.cern.ch//eos/opendata/cms/MonteCarlo2012/Summer12_DR53X/TTJets_SemiLeptMGDecays_8TeV-madgraph/AODSIM/PU_RD1_START53_V7N-v1/10000/EA978C41-27D1-E211-9424-003048D46016.root > test_edm_output.log

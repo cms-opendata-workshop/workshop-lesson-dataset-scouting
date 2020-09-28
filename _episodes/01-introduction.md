@@ -6,11 +6,20 @@ questions:
 - "What is the point of these exercises?"
 - "How do I find the data I want to work with?"
 objectives:
-- "To understand why we need special tools to find the data"
+- "To understand why we start with the Open Data Portal"
 - "To understand the basics of how the datasets are divided up"
 keypoints:
-- "Accessing the data is non-trivial, but there are tools to help with this."
+- "Finding the data is non-trivial, but all the information is on the portal"
+- "A careful understanding of the search options can help with finding what you need"
 ---
+
+Suppose you have a great idea that you want to test out with real data! You're going to want
+to know:
+* What year the data was taken that would work best for you?
+* What triggers were applied? (how was the data pre-selected to be saved and recorded)
+* What Monte Carlo datasets are available and appropriate for your studies?
+    * This may mean finding simulated physics processes that are background to your signal
+    * Or even just finding simulated datasets where you *know* the answer, allowing you to test your new analysis techniques
 
 In this lesson, we'll walk through the process of finding out what data and 
 Monte Carlo is available to you, how to find it, and how to examine what 
@@ -19,42 +28,62 @@ data is in the individual data files.
 First of all, let's understand how the data is stored and why we need certain
 tools to access it. 
 
-# XRootD
 
-Some of this history can be found [here](https://indico.cern.ch/event/523410/contributions/2355713/attachments/1367327/2071864/XWS-Tokyo-History.pdf).
+# The CERN Open Data Portal
 
-HEP data presents challenges due to the size of the datasets and the heterogeneity of 
-the data itself. The latter comment refers to the fact that for much of the processing
-of the data, the size of each event is different from one event to the next. This issue
-is solved with the ROOT filesystem, which can efficiently deal with this type of 
-"blocky" data. But experiments will often have thousands or even millions of individual 
-ROOT files for the raw or processed data and this can be difficult to organize 
-and access on a filesystem.
+In some of the earliest discussions about making HEP data publicly available there were many concerns about 
+people using and analyzing "other people's" data. The concern centered around well-meaning scientists improperly 
+analyzing data and coming up with incorrect conclusions. 
 
-In 1997, the BaBar experiment decided to use a commercial database from Objectivity. 
-However after a couple of years of running, the database was not scaling and a new solution
-was sought. This led to the development of and first deployment of 
-[XRootD](https://xrootd.slac.stanford.edu/) at SLAC for BaBar, but it has gone on to be used
-in most HEP experiments.
+While no system is perfect, one way to guard against this is to only release well-understood, well-calibrated 
+datasets and to make sure open data analysts *only* use these datasets. Because the CERN Open Data Portal
+is a mutable environment and some datasets may change over time as they are being validated, it is important
+that we make sure that analysts *only* use these vetted datasets. These datasets are given
+a [Digital Object Identifier (DOI)](https://www.doi.org/) code for tracking. And if there
+are ever questions about the validity of the data, it allows us to check the 
+[data provenance](https://en.wikipedia.org/wiki/Data_lineage#:~:text=Data%20provenance%20refers%20to%20records,the%20data%20and%20its%20origins.).
 
-XRootD can be thought of as a database that keeps track of where files live on disk, but it
-can also *serve up* data from those files! Yes, the files exist somewhere on the file system,
-but we don't generally access them directly. 
-So many of the tools and scripts we use within CMS have XRootD baked into them.
+## DOI
 
-Beyond that, the data you will be accessing, either from a docker image or VM, is
-not on your machine and instead lives somewhere on disk at CERN. So just typing
+The [Digital Object Identifier (DOI)](https://www.doi.org/) system allows people to assign a unique
+ID to any piece of digital media: a book, a piece of music, a software package, or a dataset. If you want to learn
+more about the DOI process, you can learn more at their [FAQ](https://www.doi.org/faq.html). Assigning
+of DOIs to CERN products is generally handled through [Zenodo](https://zenodo.org/). 
 
-~~~
-ls -l
-~~~
-{: .bash}
+> ## Challenge!
+> You will find that all the datasets have their DOI listed at the top of their page on the portal. 
+> Can you locate where the DOI is shown for this dataset, Record 6029,
+> [DoubleElectron primary dataset in AOD format from Run of 2012 (/DoubleElectron/Run2012C-22Jan2013-v1/AOD)](http://opendata.cern.ch/record/6029)
+> 
+> ![](../assets/img/portal_screenshot_DOI_example.png)
+{: .challenge}
 
-for these directories will not work. 
+## Provenance
 
-Fortunately, we have provided some simple tools to find out where these datasets and files are. 
-Once we find them, we have also provided some simple tools to inspect these files to get a first-order
-look at what's inside them. 
+You will hear experimentalists refer to the "*provenance*" of a dataset. From the 
+[Cambridge dictionary](https://dictionary.cambridge.org/us/dictionary/english/provenance), provenance
+refers to "*the place of origin of something*". 
+The way we use it, we are referring to how we keep track of the history of how a dataset was 
+processed: what version of the software was used for reconstruction, what period of calibrations
+was used during that processing, etc. In this way, we are documenting the 
+[data lineage](https://en.wikipedia.org/wiki/Data_lineage#:~:text=Data%20provenance%20refers%20to%20records,the%20data%20and%20its%20origins.)
+of our datasets. 
+> ## From [Wikipeda](https://en.wikipedia.org/wiki/Data_lineage#:~:text=Data%20provenance%20refers%20to%20records,the%20data%20and%20its%20origins.)
+> Data lineage includes the data origin, what happens to it and where it moves over time.
+> Data lineage gives visibility while greatly simplifying the ability to trace errors back to the root cause in a data analytics process.
+{: .testimonial}
+
+Provenance is an an important part of our data quality checks
+and another reason we want to make sure you are using only vetted and calibrated data. 
+
+
+## This lesson
+
+For all the reasons given above, we encourage you to familiarize yourself with the search features and options
+on the portal. With your feedback, we can also work to create better search tools/options and landing
+points. 
+
+This exercise will guide you through the current approach to finding data and Monte Carlo. Let's go!
 
 
 {% include links.md %}
